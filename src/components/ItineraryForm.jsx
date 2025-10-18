@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { generatePDF } from '../utils/pdfGenerator';
+import { generatePDF } from '../utils/pdfGenerator.jsx';
 
 const ItineraryForm = () => {
   const [formData, setFormData] = useState({
