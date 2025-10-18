@@ -69,10 +69,10 @@ src/
 ├── components/
 │   └── ItineraryForm.jsx    # Main form component
 ├── utils/
-│   └── pdfGenerator.js      # PDF generation utility
+│   └── pdfGenerator.jsx     # PDF generation with @react-pdf/renderer
 ├── App.jsx                  # Root component
 ├── main.jsx                 # Entry point
-└── index.css                # Global styles
+└── index.css                # Global styles + Tailwind
 ```
 
 ## License
