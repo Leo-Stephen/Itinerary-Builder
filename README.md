@@ -20,8 +20,8 @@ A frontend itinerary builder that allows users to create a multi-day tour plan a
 - **React** - Frontend framework
 - **Vite** - Build tool
 - **Tailwind CSS** - Styling
-- **jsPDF** - PDF generation
-- **html2canvas** - HTML to canvas conversion
+- **@react-pdf/renderer** - PDF generation with exact design control
+- **file-saver** - File download utility
 
 ## Installation
 
