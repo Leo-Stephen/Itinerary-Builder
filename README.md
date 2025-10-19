@@ -50,6 +50,7 @@ npm run build
 ## Features Implementation
 
 ### Dynamic Forms
+
 - Add/remove days
 - Add/remove activities for each time period
 - Add/remove flights
@@ -58,6 +59,7 @@ npm run build
 - Add/remove payment installments
 
 ### PDF Generation
+
 - Exact match with Figma design
 - Company details in footer on all pages
 - Multi-page PDF output
@@ -84,4 +86,3 @@ MIT
 ## Author
 
 Vigovia Tech Pvt. Ltd
-
