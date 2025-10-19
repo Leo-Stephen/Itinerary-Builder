@@ -929,10 +929,20 @@ export const generatePDF = async (formData) => {
     
     // Create a temporary container
     const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.top = '0';
+    container.style.left = '0';
+    container.style.width = '210mm';
+    container.style.zIndex = '-1';
+    container.style.opacity = '0';
     container.innerHTML = htmlContent;
-    container.style.position = 'absolute';
-    container.style.left = '-9999px';
     document.body.appendChild(container);
+    
+    // Wait for rendering
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Get all pages
+    const pages = container.querySelectorAll('.page');
     
     // Configure html2pdf options
     const options = {
@@ -942,17 +952,18 @@ export const generatePDF = async (formData) => {
       html2canvas: { 
         scale: 2,
         useCORS: true,
-        letterRendering: true
+        letterRendering: true,
+        logging: false
       },
       jsPDF: { 
         unit: 'mm', 
         format: 'a4', 
         orientation: 'portrait' 
       },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      pagebreak: { mode: ['css', 'legacy'] }
     };
     
-    // Generate PDF
+    // Generate PDF from the container
     await html2pdf().set(options).from(container).save();
     
     // Clean up
