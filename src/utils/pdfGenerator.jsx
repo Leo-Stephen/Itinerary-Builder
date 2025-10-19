@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   
   // Hero Section
   hero: {
-    backgroundColor: '#5B8FD9',
+    background: 'linear-gradient(135deg, #5B8FD9 0%, #764ba2 100%)',
     marginHorizontal: 30,
     borderRadius: 12,
     padding: 30,
@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
   heroIcons: {
     flexDirection: 'row',
     gap: 15,
-    fontSize: 20,
+    fontSize: 16,
+    color: '#ffffff',
   },
   
   // Trip Details Box
@@ -117,44 +118,48 @@ const styles = StyleSheet.create({
   },
   dayBadge: {
     backgroundColor: '#3D2866',
-    width: 50,
+    width: 60,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 15,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
   },
   dayBadgeText: {
     color: '#ffffff',
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: 'Helvetica-Bold',
-    transform: 'rotate(-90deg)',
+    letterSpacing: 1,
   },
   dayImageContainer: {
     flex: 1,
     alignItems: 'center',
   },
   dayImagePlaceholder: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 140,
+    height: 140,
+    borderRadius: 70,
     backgroundColor: '#E8E1F3',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
   dayImageEmoji: {
-    fontSize: 40,
+    fontSize: 50,
+    color: '#666666',
   },
   dayDate: {
-    fontSize: 14,
+    fontSize: 15,
     fontFamily: 'Helvetica-Bold',
     color: '#3D2866',
-    marginBottom: 3,
+    marginBottom: 4,
+    textAlign: 'center',
   },
   dayTitle: {
-    fontSize: 11,
+    fontSize: 10,
     color: '#666666',
     textAlign: 'center',
+    maxWidth: 140,
   },
   dayActivities: {
     flex: 1.5,
@@ -432,10 +437,7 @@ const Header = () => (
       <Text style={styles.logoBlue}>via</Text>
       <Text style={styles.logoPurple}>govia</Text>
     </Text>
-    <View style={styles.headerRight}>
-      <Text style={styles.planPackGo}>PLAN.PACK.GO</Text>
-      <Text style={styles.planPackGo}>  ✈</Text>
-    </View>
+    <Text style={styles.planPackGo}>PLAN.PACK.GO</Text>
   </View>
 );
 
@@ -470,7 +472,13 @@ const HeroSection = ({ data }) => (
     <Text style={styles.heroTitle}>Hi, {data.customerName}!</Text>
     <Text style={styles.heroSubtitle}>{data.tripTitle}</Text>
     <Text style={styles.heroDuration}>{data.totalDays} Days {data.totalNights} Nights</Text>
-    <Text style={styles.heroIcons}>✈  📄  🌐  🚗  🏨</Text>
+    <View style={styles.heroIcons}>
+      <Text style={{ fontSize: 16, color: '#ffffff' }}>✈</Text>
+      <Text style={{ fontSize: 16, color: '#ffffff' }}>📄</Text>
+      <Text style={{ fontSize: 16, color: '#ffffff' }}>🌐</Text>
+      <Text style={{ fontSize: 16, color: '#ffffff' }}>🚗</Text>
+      <Text style={{ fontSize: 16, color: '#ffffff' }}>🏨</Text>
+    </View>
   </View>
 );
 
@@ -504,11 +512,15 @@ const TripDetails = ({ data }) => (
 const DaySection = ({ day }) => (
   <View style={styles.dayContainer}>
     <View style={styles.dayBadge}>
-      <Text style={styles.dayBadgeText}>Day {day.dayNumber}</Text>
+      <Text style={styles.dayBadgeText}>D</Text>
+      <Text style={styles.dayBadgeText}>a</Text>
+      <Text style={styles.dayBadgeText}>y</Text>
+      <Text style={styles.dayBadgeText}> </Text>
+      <Text style={styles.dayBadgeText}>{day.dayNumber}</Text>
     </View>
     <View style={styles.dayImageContainer}>
       <View style={styles.dayImagePlaceholder}>
-        <Text style={styles.dayImageEmoji}>🌆</Text>
+        <Text style={styles.dayImageEmoji}>🏙</Text>
       </View>
       <Text style={styles.dayDate}>{day.date}</Text>
       <Text style={styles.dayTitle}>{day.title}</Text>
