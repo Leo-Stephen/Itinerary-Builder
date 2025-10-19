@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
     color: '#3D2866',
   },
   
-  // Hero Section
+  // Hero Section (gradient simulation with blue-purple blend)
   hero: {
-    background: 'linear-gradient(135deg, #5B8FD9 0%, #764ba2 100%)',
+    backgroundColor: '#6A7FCA', // Blend of blue and purple
     marginHorizontal: 30,
     borderRadius: 12,
     padding: 30,
@@ -127,9 +127,9 @@ const styles = StyleSheet.create({
   },
   dayBadgeText: {
     color: '#ffffff',
-    fontSize: 16,
+    fontSize: 15,
     fontFamily: 'Helvetica-Bold',
-    letterSpacing: 1,
+    lineHeight: 1.2,
   },
   dayImageContainer: {
     flex: 1,
@@ -473,11 +473,11 @@ const HeroSection = ({ data }) => (
     <Text style={styles.heroSubtitle}>{data.tripTitle}</Text>
     <Text style={styles.heroDuration}>{data.totalDays} Days {data.totalNights} Nights</Text>
     <View style={styles.heroIcons}>
-      <Text style={{ fontSize: 16, color: '#ffffff' }}>✈</Text>
-      <Text style={{ fontSize: 16, color: '#ffffff' }}>📄</Text>
-      <Text style={{ fontSize: 16, color: '#ffffff' }}>🌐</Text>
-      <Text style={{ fontSize: 16, color: '#ffffff' }}>🚗</Text>
-      <Text style={{ fontSize: 16, color: '#ffffff' }}>🏨</Text>
+      <Text style={{ fontSize: 20, color: '#ffffff', marginHorizontal: 5 }}>✈</Text>
+      <Text style={{ fontSize: 20, color: '#ffffff', marginHorizontal: 5 }}>📄</Text>
+      <Text style={{ fontSize: 20, color: '#ffffff', marginHorizontal: 5 }}>☁</Text>
+      <Text style={{ fontSize: 20, color: '#ffffff', marginHorizontal: 5 }}>🚗</Text>
+      <Text style={{ fontSize: 20, color: '#ffffff', marginHorizontal: 5 }}>🏨</Text>
     </View>
   </View>
 );
@@ -512,15 +512,17 @@ const TripDetails = ({ data }) => (
 const DaySection = ({ day }) => (
   <View style={styles.dayContainer}>
     <View style={styles.dayBadge}>
-      <Text style={styles.dayBadgeText}>D</Text>
-      <Text style={styles.dayBadgeText}>a</Text>
-      <Text style={styles.dayBadgeText}>y</Text>
-      <Text style={styles.dayBadgeText}> </Text>
-      <Text style={styles.dayBadgeText}>{day.dayNumber}</Text>
+      <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+        <Text style={styles.dayBadgeText}>D</Text>
+        <Text style={styles.dayBadgeText}>a</Text>
+        <Text style={styles.dayBadgeText}>y</Text>
+        <Text style={styles.dayBadgeText}> </Text>
+        <Text style={styles.dayBadgeText}>{day.dayNumber}</Text>
+      </View>
     </View>
     <View style={styles.dayImageContainer}>
       <View style={styles.dayImagePlaceholder}>
-        <Text style={styles.dayImageEmoji}>🏙</Text>
+        <Text style={{ fontSize: 60, color: '#999999' }}>◯</Text>
       </View>
       <Text style={styles.dayDate}>{day.date}</Text>
       <Text style={styles.dayTitle}>{day.title}</Text>
