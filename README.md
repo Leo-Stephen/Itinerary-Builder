@@ -19,9 +19,10 @@ A frontend itinerary builder that allows users to create a multi-day tour plan a
 
 - **React** - Frontend framework
 - **Vite** - Build tool
-- **Tailwind CSS** - Styling
-- **@react-pdf/renderer** - PDF generation with exact design control
-- **file-saver** - File download utility
+- **Tailwind CSS** - Styling for the form interface
+- **html2pdf.js** - Client-side HTML to PDF converter with full CSS support
+  - Enables pixel-perfect PDF generation with CSS gradients, transforms, and modern layouts
+  - Converts styled HTML directly to PDF without backend dependencies
 
 ## Installation
 
@@ -67,12 +68,13 @@ npm run build
 ```
 src/
 ├── components/
-│   └── ItineraryForm.jsx    # Main form component
+│   └── ItineraryForm.jsx      # Main form component with dynamic inputs
 ├── utils/
-│   └── pdfGenerator.jsx     # PDF generation with @react-pdf/renderer
-├── App.jsx                  # Root component
-├── main.jsx                 # Entry point
-└── index.css                # Global styles + Tailwind
+│   ├── pdfGeneratorHTML.js    # PDF generation with html2pdf.js (full CSS support)
+│   └── pdfGenerator.jsx       # Legacy @react-pdf/renderer version
+├── App.jsx                    # Root component
+├── main.jsx                   # Entry point
+└── index.css                  # Global styles + Tailwind
 ```
 
 ## License
