@@ -293,39 +293,13 @@ const generateHTMLTemplate = (data) => {
     .flight-date {
       background: white;
       border: 2px solid #764ba2;
-      border-radius: 6px 0 0 6px;
-      padding: 10px 20px 10px 15px;
+      border-radius: 6px;
+      padding: 10px 15px;
       font-size: 11px;
       font-weight: 700;
       color: #3D2866;
       white-space: nowrap;
       position: relative;
-      margin-right: 15px;
-    }
-    
-    .flight-date::after {
-      content: '';
-      position: absolute;
-      right: -15px;
-      top: 0;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 20px 0 20px 15px;
-      border-color: transparent transparent transparent white;
-    }
-    
-    .flight-date::before {
-      content: '';
-      position: absolute;
-      right: -17px;
-      top: -2px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 22px 0 22px 17px;
-      border-color: transparent transparent transparent #764ba2;
-      z-index: -1;
     }
     
     .flight-info {
@@ -413,37 +387,11 @@ const generateHTMLTemplate = (data) => {
       gap: 15px;
       background: #F5F3FF;
       border: 2px solid #E8E1F3;
-      border-radius: 10px 0 0 10px;
-      padding: 15px 30px 15px 15px;
+      border-radius: 10px;
+      padding: 15px;
       margin-bottom: 15px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
       position: relative;
-      margin-right: 20px;
-    }
-    
-    .payment-box::after {
-      content: '';
-      position: absolute;
-      right: -20px;
-      top: 0;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 28px 0 28px 20px;
-      border-color: transparent transparent transparent #F5F3FF;
-    }
-    
-    .payment-box::before {
-      content: '';
-      position: absolute;
-      right: -22px;
-      top: -2px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 30px 0 30px 22px;
-      border-color: transparent transparent transparent #E8E1F3;
-      z-index: -1;
     }
     
     .payment-label {
