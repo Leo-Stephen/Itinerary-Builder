@@ -390,20 +390,29 @@ const generateHTMLTemplate = (data) => {
       background: #F5F3FF;
       border: 2px solid #E8E1F3;
       border-radius: 10px;
-      padding: 15px;
+      padding: 15px 25px 15px 15px;
       margin-bottom: 15px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      position: relative;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 15px) 0,
+        100% 50%,
+        calc(100% - 15px) 100%,
+        0 100%
+      );
     }
     
     .payment-label {
       background: white;
       border: 2px solid #764ba2;
-      border-radius: 6px;
-      padding: 10px;
-      font-size: 11px;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 12px;
       font-weight: 700;
       color: #3D2866;
       white-space: nowrap;
+      box-shadow: 0 1px 3px rgba(118, 75, 162, 0.15);
     }
     
     .payment-value {
@@ -418,12 +427,12 @@ const generateHTMLTemplate = (data) => {
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
       border: 2px solid #E8E1F3;
-      border-radius: 10px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 20px 25px;
       text-align: center;
       margin-top: 15px;
       background: white;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
     
     .visa-label {
@@ -449,16 +458,18 @@ const generateHTMLTemplate = (data) => {
       font-weight: 800;
       color: #3D2866;
       margin-bottom: 20px;
+      letter-spacing: 2px;
     }
     
     .cta-button {
-      background: #3D2866;
+      background: linear-gradient(135deg, #3D2866 0%, #5B4B8A 100%);
       color: white;
       padding: 14px 40px;
       border-radius: 30px;
       font-size: 14px;
       font-weight: 700;
       display: inline-block;
+      box-shadow: 0 4px 8px rgba(61, 40, 102, 0.3);
     }
     
     /* Footer */
@@ -525,9 +536,10 @@ const generateHTMLTemplate = (data) => {
     .link {
       color: #5B8FD9;
       text-decoration: underline;
-      font-size: 11px;
+      font-size: 12px;
       margin-top: 8px;
       display: inline-block;
+      font-weight: 500;
     }
   </style>
 </head>
