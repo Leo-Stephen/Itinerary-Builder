@@ -11,23 +11,23 @@ const COMPANY_INFO = {
   cin: 'U79110KA2024PTC191890'
 };
 
-// Diverse Travel Destination Images (High-quality Unsplash)
+// Curated Travel Destination Images (Wide angle, consistent theme)
 const DESTINATION_IMAGES = [
-  'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=400&h=400&fit=crop', // Beach resort
-  'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&h=400&fit=crop', // Mountain landscape
-  'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&h=400&fit=crop', // City skyline
-  'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&h=400&fit=crop', // Paris landmarks
-  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&h=400&fit=crop', // Tropical beach
-  'https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=400&h=400&fit=crop', // Desert landscape
-  'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&h=400&fit=crop', // Venice canals
-  'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=400&fit=crop', // Mountain lake
-  'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=400&fit=crop', // City streets
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop', // Mountain peaks
-  'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400&h=400&fit=crop', // City at night
-  'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=400&fit=crop', // Resort pool
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop', // Forest path
-  'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=400&h=400&fit=crop', // Gardens
-  'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=400&h=400&fit=crop', // Ocean view
+  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500', // Mountain vista with sky
+  'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&h=500', // Bali temple landscape
+  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&h=500', // Tropical beach sunset
+  'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=500&h=500', // Ocean waves and coast
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500', // Forest with sunlight
+  'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=500&h=500', // City skyline overview
+  'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=500&h=500', // Alpine mountain landscape
+  'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=500&h=500', // Venice canal with buildings
+  'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&h=500', // Mountain lake reflection
+  'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&h=500', // Eiffel Tower Paris
+  'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500', // European city street
+  'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=500&h=500', // Luxury resort pool
+  'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=500&h=500', // Botanical gardens
+  'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&h=500', // City lights at dusk
+  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500', // Sunset mountain range
 ];
 
 // Function to get unique random images for each day
@@ -228,14 +228,16 @@ const generateHTMLTemplate = (data) => {
       box-shadow: 0 4px 12px rgba(118, 75, 162, 0.15);
       overflow: hidden;
       position: relative;
+      padding: 0;
     }
     
     .day-image-placeholder img {
-      width: 100%;
-      height: 100%;
+      width: 110%;
+      height: 110%;
       object-fit: cover;
       object-position: center;
       display: block;
+      transform: scale(0.95);
     }
     
     .day-date {
