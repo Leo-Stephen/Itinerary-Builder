@@ -1,7 +1,10 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useRef } from 'react';
 import { generatePDF } from '../utils/pdfGenerator.js';
 
 const ItineraryForm = () => {
+  // Use ref for synchronous duplicate prevention
+  const addingRef = useRef({});
+  
   const [formData, setFormData] = useState({
     // Tour Overview
     customerName: 'Rahul',
@@ -195,26 +198,36 @@ const ItineraryForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    if (isAddingDay) return;
     
+    if (addingRef.current.day === true) {
+      console.log('🚫 Prevented duplicate day addition');
+      return;
+    }
+    
+    console.log('✅ Adding new day');
+    addingRef.current.day = true;
     setIsAddingDay(true);
-    setFormData(prev => ({
-      ...prev,
-      days: [
-        ...prev.days,
-        {
-          dayNumber: prev.days.length + 1,
-          date: '',
-          title: '',
-          image: '',
-          morning: [{ text: '' }],
-          afternoon: [{ text: '' }],
-          evening: [{ text: '' }]
-        }
-      ]
-    }));
-    setTimeout(() => setIsAddingDay(false), 300);
-  }, [isAddingDay]);
+    
+    setFormData(prev => {
+      const newDays = JSON.parse(JSON.stringify(prev.days));
+      newDays.push({
+        dayNumber: newDays.length + 1,
+        date: '',
+        title: '',
+        image: '',
+        morning: [{ text: '' }],
+        afternoon: [{ text: '' }],
+        evening: [{ text: '' }]
+      });
+      
+      return { ...prev, days: newDays };
+    });
+    
+    setTimeout(() => {
+      addingRef.current.day = false;
+      setIsAddingDay(false);
+    }, 400);
+  }, []);
 
   const removeDay = useCallback((index) => {
     setFormData(prev => ({
@@ -224,37 +237,52 @@ const ItineraryForm = () => {
   }, []);
 
   const addActivity = useCallback((dayIndex, period, event) => {
-    // Prevent default behavior and event bubbling
+    // Prevent all event propagation
     if (event) {
       event.preventDefault();
       event.stopPropagation();
     }
 
-    // Create unique key for this day/period combination
     const activityKey = `${dayIndex}-${period}`;
     
-    // Prevent duplicate additions if already adding
-    if (isAddingActivity[activityKey]) {
-      console.log('🚫 Prevented duplicate activity addition');
+    // Check if already processing this specific add action
+    if (addingRef.current[activityKey] === true) {
+      console.log('🚫 Prevented duplicate activity addition for:', activityKey);
       return;
     }
 
-    // Set loading state for this specific button
+    console.log('✅ Adding activity for:', activityKey);
+    
+    // Lock this specific action IMMEDIATELY
+    addingRef.current[activityKey] = true;
+    
+    // Visual feedback
     setIsAddingActivity(prev => ({ ...prev, [activityKey]: true }));
     
-    // Add the activity with functional state update
-    setFormData(prev => {
-      const newDays = [...prev.days];
-      const currentActivities = newDays[dayIndex][period];
-      newDays[dayIndex][period] = [...currentActivities, { text: '' }];
-      return { ...prev, days: newDays };
+    // Perform state update with DEEP CLONE to avoid mutations
+    setFormData(prevFormData => {
+      // Deep clone to avoid any mutation issues
+      const newDays = JSON.parse(JSON.stringify(prevFormData.days));
+      
+      // Add new activity to the correct period
+      newDays[dayIndex][period].push({ text: '' });
+      
+      return {
+        ...prevFormData,
+        days: newDays
+      };
     });
 
-    // Re-enable button after a short delay (debouncing)
+    // Unlock after safe delay
     setTimeout(() => {
-      setIsAddingActivity(prev => ({ ...prev, [activityKey]: false }));
-    }, 300); // 300ms debounce
-  }, [isAddingActivity]);
+      addingRef.current[activityKey] = false;
+      setIsAddingActivity(prev => {
+        const updated = { ...prev };
+        delete updated[activityKey];
+        return updated;
+      });
+    }, 400); // Slightly longer delay for safety
+  }, []);
 
   const removeActivity = useCallback((dayIndex, period, activityIndex) => {
     setFormData(prev => {
@@ -277,15 +305,28 @@ const ItineraryForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    if (isAddingFlight) return;
     
+    if (addingRef.current.flight === true) {
+      console.log('🚫 Prevented duplicate flight addition');
+      return;
+    }
+    
+    console.log('✅ Adding new flight');
+    addingRef.current.flight = true;
     setIsAddingFlight(true);
-    setFormData(prev => ({
-      ...prev,
-      flights: [...prev.flights, { date: '', airline: '', route: '' }]
-    }));
-    setTimeout(() => setIsAddingFlight(false), 300);
-  }, [isAddingFlight]);
+    
+    setFormData(prev => {
+      const newFlights = JSON.parse(JSON.stringify(prev.flights));
+      newFlights.push({ date: '', airline: '', route: '' });
+      
+      return { ...prev, flights: newFlights };
+    });
+    
+    setTimeout(() => {
+      addingRef.current.flight = false;
+      setIsAddingFlight(false);
+    }, 400);
+  }, []);
 
   const removeFlight = useCallback((index) => {
     setFormData(prev => ({
@@ -307,15 +348,28 @@ const ItineraryForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    if (isAddingHotel) return;
     
+    if (addingRef.current.hotel === true) {
+      console.log('🚫 Prevented duplicate hotel addition');
+      return;
+    }
+    
+    console.log('✅ Adding new hotel');
+    addingRef.current.hotel = true;
     setIsAddingHotel(true);
-    setFormData(prev => ({
-      ...prev,
-      hotels: [...prev.hotels, { city: '', checkIn: '', checkOut: '', nights: 0, hotelName: '' }]
-    }));
-    setTimeout(() => setIsAddingHotel(false), 300);
-  }, [isAddingHotel]);
+    
+    setFormData(prev => {
+      const newHotels = JSON.parse(JSON.stringify(prev.hotels));
+      newHotels.push({ city: '', checkIn: '', checkOut: '', nights: 0, hotelName: '' });
+      
+      return { ...prev, hotels: newHotels };
+    });
+    
+    setTimeout(() => {
+      addingRef.current.hotel = false;
+      setIsAddingHotel(false);
+    }, 400);
+  }, []);
 
   const removeHotel = useCallback((index) => {
     setFormData(prev => ({
@@ -337,15 +391,28 @@ const ItineraryForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    if (isAddingInclusion) return;
     
+    if (addingRef.current.inclusion === true) {
+      console.log('🚫 Prevented duplicate inclusion addition');
+      return;
+    }
+    
+    console.log('✅ Adding new inclusion');
+    addingRef.current.inclusion = true;
     setIsAddingInclusion(true);
-    setFormData(prev => ({
-      ...prev,
-      inclusions: [...prev.inclusions, { category: '', count: 0, details: '', status: '' }]
-    }));
-    setTimeout(() => setIsAddingInclusion(false), 300);
-  }, [isAddingInclusion]);
+    
+    setFormData(prev => {
+      const newInclusions = JSON.parse(JSON.stringify(prev.inclusions));
+      newInclusions.push({ category: '', count: 0, details: '', status: '' });
+      
+      return { ...prev, inclusions: newInclusions };
+    });
+    
+    setTimeout(() => {
+      addingRef.current.inclusion = false;
+      setIsAddingInclusion(false);
+    }, 400);
+  }, []);
 
   const removeInclusion = useCallback((index) => {
     setFormData(prev => ({
@@ -367,15 +434,32 @@ const ItineraryForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    if (isAddingInstallment) return;
     
+    if (addingRef.current.installment === true) {
+      console.log('🚫 Prevented duplicate installment addition');
+      return;
+    }
+    
+    console.log('✅ Adding new installment');
+    addingRef.current.installment = true;
     setIsAddingInstallment(true);
-    setFormData(prev => ({
-      ...prev,
-      installments: [...prev.installments, { installmentNumber: `Installment ${prev.installments.length + 1}`, amount: '', dueDate: '' }]
-    }));
-    setTimeout(() => setIsAddingInstallment(false), 300);
-  }, [isAddingInstallment]);
+    
+    setFormData(prev => {
+      const newInstallments = JSON.parse(JSON.stringify(prev.installments));
+      newInstallments.push({ 
+        installmentNumber: `Installment ${newInstallments.length + 1}`, 
+        amount: '', 
+        dueDate: '' 
+      });
+      
+      return { ...prev, installments: newInstallments };
+    });
+    
+    setTimeout(() => {
+      addingRef.current.installment = false;
+      setIsAddingInstallment(false);
+    }, 400);
+  }, []);
 
   const removeInstallment = useCallback((index) => {
     setFormData(prev => ({
