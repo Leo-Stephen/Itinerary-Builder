@@ -45,6 +45,7 @@ const generateHTMLTemplate = (data) => {
       background: white;
       position: relative;
       page-break-after: always;
+      box-sizing: border-box;
     }
     
     .page:last-child {
@@ -60,7 +61,7 @@ const generateHTMLTemplate = (data) => {
     }
     
     .logo {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 800;
     }
     
@@ -73,44 +74,44 @@ const generateHTMLTemplate = (data) => {
     }
     
     .tagline {
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       color: #3D2866;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
     
     /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #5B8FD9 0%, #764ba2 100%);
-      border-radius: 15px;
-      padding: 35px;
+      border-radius: 12px;
+      padding: 30px;
       text-align: center;
       color: white;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
     
     .hero-title {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 800;
       margin-bottom: 8px;
     }
     
     .hero-subtitle {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     
     .hero-duration {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 500;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
     
     .hero-icons {
-      font-size: 24px;
+      font-size: 20px;
       display: flex;
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
       align-items: center;
     }
@@ -121,13 +122,13 @@ const generateHTMLTemplate = (data) => {
       grid-template-columns: repeat(5, 1fr);
       gap: 15px;
       border: 2px solid #E8E1F3;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 25px;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
     }
     
     .trip-detail-item {
-      text-align: center;
+      text-align: left;
     }
     
     .trip-detail-item:last-child {
@@ -135,23 +136,23 @@ const generateHTMLTemplate = (data) => {
     }
     
     .trip-detail-label {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       color: #3D2866;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
     }
     
     .trip-detail-value {
-      font-size: 12px;
-      color: #333;
+      font-size: 11px;
+      color: #333333;
     }
     
     /* Day Section */
     .day-container {
       display: flex;
-      gap: 15px;
-      margin-bottom: 30px;
-      padding-bottom: 30px;
+      gap: 12px;
+      margin-bottom: 25px;
+      padding-bottom: 25px;
       border-bottom: 2px solid #E8E1F3;
     }
     
@@ -187,29 +188,29 @@ const generateHTMLTemplate = (data) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 60px;
-      margin-bottom: 12px;
+      font-size: 50px;
+      margin-bottom: 10px;
     }
     
     .day-date {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: #3D2866;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
       text-align: center;
     }
     
     .day-title {
-      font-size: 11px;
-      color: #666;
+      font-size: 10px;
+      color: #666666;
       text-align: center;
-      max-width: 150px;
+      max-width: 140px;
     }
     
     .day-activities {
       flex: 2;
-      padding-left: 20px;
-      border-left: 4px solid #5B8FD9;
+      padding-left: 15px;
+      border-left: 3px solid #5B8FD9;
     }
     
     .activity-period {
@@ -219,38 +220,40 @@ const generateHTMLTemplate = (data) => {
     .activity-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
+      gap: 8px;
+      margin-bottom: 5px;
     }
     
     .activity-dot {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: white;
       border: 3px solid #3D2866;
+      flex-shrink: 0;
     }
     
     .activity-label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: #3D2866;
     }
     
     .activity-item {
-      font-size: 11px;
-      color: #333;
-      margin-left: 22px;
-      margin-bottom: 4px;
-      line-height: 1.5;
+      font-size: 10px;
+      color: #333333;
+      margin-left: 18px;
+      margin-bottom: 3px;
+      line-height: 1.4;
     }
     
     /* Section Titles */
     .section-title {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       color: #3D2866;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      margin-top: 25px;
     }
     
     .section-title .highlight {
@@ -261,28 +264,28 @@ const generateHTMLTemplate = (data) => {
     .flight-card {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
       background: #F5F3FF;
       border: 2px solid #E8E1F3;
       border-radius: 10px;
-      padding: 18px 20px;
-      margin-bottom: 15px;
+      padding: 15px;
+      margin-bottom: 12px;
     }
     
     .flight-date {
       background: white;
       border: 2px solid #764ba2;
-      border-radius: 8px;
-      padding: 12px 15px;
-      font-size: 12px;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 11px;
       font-weight: 700;
       color: #3D2866;
       white-space: nowrap;
     }
     
     .flight-info {
-      font-size: 12px;
-      color: #333;
+      font-size: 11px;
+      color: #333333;
       flex: 1;
     }
     
@@ -291,17 +294,17 @@ const generateHTMLTemplate = (data) => {
     }
     
     .flight-note {
-      font-size: 10px;
-      color: #666;
+      font-size: 9px;
+      color: #666666;
       font-style: italic;
-      margin-top: 10px;
+      margin-top: 8px;
     }
     
     /* Table */
     .table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     
     .table-header {
@@ -310,9 +313,9 @@ const generateHTMLTemplate = (data) => {
     }
     
     .table-header th {
-      padding: 14px 16px;
+      padding: 12px 15px;
       text-align: left;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
     }
     
@@ -333,9 +336,9 @@ const generateHTMLTemplate = (data) => {
     }
     
     .table tbody td {
-      padding: 14px 16px;
-      font-size: 11px;
-      color: #333;
+      padding: 12px 15px;
+      font-size: 10px;
+      color: #333333;
     }
     
     .table tbody td.bold {
@@ -343,41 +346,41 @@ const generateHTMLTemplate = (data) => {
     }
     
     .notes-list {
-      font-size: 10px;
-      color: #666;
+      font-size: 9px;
+      color: #666666;
       padding-left: 0;
       list-style: none;
     }
     
     .notes-list li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     
     /* Payment Box */
     .payment-box {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
       background: #F5F3FF;
       border: 2px solid #E8E1F3;
       border-radius: 10px;
-      padding: 18px 20px;
+      padding: 15px;
       margin-bottom: 15px;
     }
     
     .payment-label {
       background: white;
       border: 2px solid #764ba2;
-      border-radius: 8px;
-      padding: 12px 15px;
-      font-size: 12px;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 11px;
       font-weight: 700;
       color: #3D2866;
       white-space: nowrap;
     }
     
     .payment-value {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: #3D2866;
     }
@@ -389,42 +392,42 @@ const generateHTMLTemplate = (data) => {
       gap: 30px;
       border: 2px solid #E8E1F3;
       border-radius: 10px;
-      padding: 25px;
+      padding: 20px;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 15px;
     }
     
     .visa-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: #3D2866;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
     }
     
     .visa-value {
-      font-size: 12px;
-      color: #333;
+      font-size: 11px;
+      color: #333333;
     }
     
     /* CTA Section */
     .cta-section {
       text-align: center;
-      padding: 40px 0;
+      padding: 30px 0;
     }
     
     .cta-title {
-      font-size: 42px;
+      font-size: 36px;
       font-weight: 800;
       color: #3D2866;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
     
     .cta-button {
       background: #3D2866;
       color: white;
-      padding: 16px 50px;
+      padding: 14px 40px;
       border-radius: 30px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 700;
       display: inline-block;
     }
@@ -432,17 +435,17 @@ const generateHTMLTemplate = (data) => {
     /* Footer */
     .footer {
       border-top: 2px solid #E8E1F3;
-      padding-top: 20px;
-      margin-top: 30px;
+      padding-top: 15px;
+      margin-top: 15px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 20px;
-      font-size: 10px;
+      font-size: 9px;
     }
     
     .footer-section {
-      color: #666;
-      line-height: 1.6;
+      color: #666666;
+      line-height: 1.5;
     }
     
     .footer-section:nth-child(2) {
@@ -454,32 +457,32 @@ const generateHTMLTemplate = (data) => {
     }
     
     .footer-company-name {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: #3D2866;
-      margin-bottom: 6px;
-    }
-    
-    .footer-logo {
-      font-size: 26px;
-      font-weight: 800;
       margin-bottom: 5px;
     }
     
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+    
     .footer-tagline {
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       color: #3D2866;
     }
     
     .inclusion-note {
       background: #F5F3FF;
-      border-radius: 10px;
-      padding: 15px;
-      font-size: 10px;
-      color: #666;
-      margin-top: 15px;
-      line-height: 1.6;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 9px;
+      color: #666666;
+      margin-top: 12px;
+      line-height: 1.4;
     }
     
     .inclusion-note-title {
@@ -490,8 +493,8 @@ const generateHTMLTemplate = (data) => {
     .link {
       color: #5B8FD9;
       text-decoration: underline;
-      font-size: 12px;
-      margin-top: 10px;
+      font-size: 11px;
+      margin-top: 8px;
       display: inline-block;
     }
   </style>
@@ -505,7 +508,7 @@ const generateHTMLTemplate = (data) => {
         <div class="logo">
           <span class="logo-blue">via</span><span class="logo-purple">govia</span>
         </div>
-        <div class="tagline">PLAN.PACK.GO</div>
+        <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
       <!-- Hero Section -->
@@ -615,7 +618,7 @@ const generateHTMLTemplate = (data) => {
         <div class="logo">
           <span class="logo-blue">via</span><span class="logo-purple">govia</span>
         </div>
-        <div class="tagline">PLAN.PACK.GO</div>
+        <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
       ${data.days.length > 2 ? data.days.slice(2).map(day => `
@@ -726,7 +729,7 @@ const generateHTMLTemplate = (data) => {
         <div class="logo">
           <span class="logo-blue">via</span><span class="logo-purple">govia</span>
         </div>
-        <div class="tagline">PLAN.PACK.GO</div>
+        <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
       <!-- Important Notes -->
@@ -822,7 +825,7 @@ const generateHTMLTemplate = (data) => {
         <div class="logo">
           <span class="logo-blue">via</span><span class="logo-purple">govia</span>
         </div>
-        <div class="tagline">PLAN.PACK.GO</div>
+        <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
       <!-- Activity Table -->
