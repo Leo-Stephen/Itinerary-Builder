@@ -214,7 +214,11 @@ const generateHTMLTemplate = (data) => {
     }
     
     .activity-period {
-      margin-bottom: 18px;
+      margin-bottom: 15px;
+    }
+    
+    .activity-period:last-child {
+      margin-bottom: 0;
     }
     
     .activity-header {
@@ -549,6 +553,9 @@ const generateHTMLTemplate = (data) => {
         </div>
       </div>
       
+      <!-- Daily Itinerary Section -->
+      <div class="section-title" style="margin-top: 15px;">Daily <span class="highlight">Itinerary</span></div>
+      
       <!-- Days (First 2 days) -->
       ${data.days.slice(0, 2).map(day => `
         <div class="day-container">
@@ -621,7 +628,7 @@ const generateHTMLTemplate = (data) => {
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
-      ${data.days.length > 2 ? data.days.slice(2).map(day => `
+      ${data.days.length > 2 ? `<div class="section-title">Daily <span class="highlight">Itinerary</span></div>` + data.days.slice(2).map(day => `
         <div class="day-container">
           <div class="day-badge">Day ${day.dayNumber}</div>
           <div class="day-image-section">
@@ -662,7 +669,7 @@ const generateHTMLTemplate = (data) => {
       `).join('') : ''}
       
       <!-- Flight Summary -->
-      <div class="section-title">Flight <span class="highlight">Summary</span></div>
+      <div class="section-title" style="margin-top: 20px;">Flight <span class="highlight">Summary</span></div>
       ${data.flights.map(flight => `
         <div class="flight-card">
           <div class="flight-date">${flight.date}</div>
@@ -671,7 +678,7 @@ const generateHTMLTemplate = (data) => {
           </div>
         </div>
       `).join('')}
-      <div class="flight-note">${data.flightNote}</div>
+      ${data.flightNote ? `<div class="flight-note">${data.flightNote}</div>` : ''}
       
       <!-- Hotel Bookings -->
       <div class="section-title" style="margin-top: 30px;">Hotel <span class="highlight">Bookings</span></div>
