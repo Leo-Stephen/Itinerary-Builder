@@ -88,6 +88,7 @@ const generateHTMLTemplate = (data) => {
       text-align: center;
       color: white;
       margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(91, 143, 217, 0.25);
     }
     
     .hero-title {
@@ -125,6 +126,8 @@ const generateHTMLTemplate = (data) => {
       border-radius: 10px;
       padding: 15px;
       margin-bottom: 20px;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
     
     .trip-detail-item {
@@ -157,7 +160,7 @@ const generateHTMLTemplate = (data) => {
     }
     
     .day-badge {
-      background: #3D2866;
+      background: linear-gradient(180deg, #3D2866 0%, #4a336b 100%);
       width: 60px;
       border-radius: 12px;
       display: flex;
@@ -170,6 +173,7 @@ const generateHTMLTemplate = (data) => {
       font-size: 16px;
       padding: 20px 10px;
       letter-spacing: 2px;
+      box-shadow: 0 2px 6px rgba(61, 40, 102, 0.3);
     }
     
     .day-image-section {
@@ -190,6 +194,8 @@ const generateHTMLTemplate = (data) => {
       justify-content: center;
       font-size: 50px;
       margin-bottom: 10px;
+      border: 2px solid #d8d1e8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
     
     .day-date {
@@ -210,7 +216,8 @@ const generateHTMLTemplate = (data) => {
     .day-activities {
       flex: 2;
       padding-left: 15px;
-      border-left: 3px solid #5B8FD9;
+      border-left: 4px solid #5B8FD9;
+      position: relative;
     }
     
     .activity-period {
@@ -229,12 +236,15 @@ const generateHTMLTemplate = (data) => {
     }
     
     .activity-dot {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: white;
       border: 3px solid #3D2866;
       flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      position: relative;
+      left: -2px;
     }
     
     .activity-label {
@@ -261,7 +271,10 @@ const generateHTMLTemplate = (data) => {
     }
     
     .section-title .highlight {
-      color: #764ba2;
+      background: linear-gradient(135deg, #764ba2 0%, #9b7bb7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     /* Flight Card */
@@ -274,17 +287,21 @@ const generateHTMLTemplate = (data) => {
       border-radius: 10px;
       padding: 15px;
       margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
     
     .flight-date {
       background: white;
       border: 2px solid #764ba2;
       border-radius: 6px;
-      padding: 10px;
+      padding: 10px 15px;
       font-size: 11px;
       font-weight: 700;
       color: #3D2866;
       white-space: nowrap;
+      position: relative;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+      padding-right: 20px;
     }
     
     .flight-info {
@@ -309,10 +326,13 @@ const generateHTMLTemplate = (data) => {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     }
     
     .table-header {
-      background: #3D2866;
+      background: linear-gradient(135deg, #3D2866 0%, #5B4B8A 100%);
       color: white;
     }
     
@@ -350,14 +370,16 @@ const generateHTMLTemplate = (data) => {
     }
     
     .notes-list {
-      font-size: 9px;
+      font-size: 10px;
       color: #666666;
-      padding-left: 0;
-      list-style: none;
+      padding-left: 18px;
+      list-style: decimal;
+      margin-top: 10px;
+      line-height: 1.6;
     }
     
     .notes-list li {
-      margin-bottom: 3px;
+      margin-bottom: 5px;
     }
     
     /* Payment Box */
@@ -370,6 +392,7 @@ const generateHTMLTemplate = (data) => {
       border-radius: 10px;
       padding: 15px;
       margin-bottom: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
     
     .payment-label {
@@ -399,6 +422,8 @@ const generateHTMLTemplate = (data) => {
       padding: 20px;
       text-align: center;
       margin-top: 15px;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
     
     .visa-label {
@@ -482,11 +507,13 @@ const generateHTMLTemplate = (data) => {
     .inclusion-note {
       background: #F5F3FF;
       border-radius: 8px;
-      padding: 12px;
+      padding: 12px 15px;
       font-size: 9px;
       color: #666666;
       margin-top: 12px;
-      line-height: 1.4;
+      line-height: 1.5;
+      border: 1px solid #E8E1F3;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
     
     .inclusion-note-title {
