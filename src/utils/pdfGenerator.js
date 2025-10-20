@@ -594,7 +594,7 @@ const generateHTMLTemplate = (data) => {
       <!-- Header -->
       <div class="header">
         <div class="logo">
-          <span class="logo-blue">via</span><span class="logo-purple">govia</span>
+          <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
         </div>
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
@@ -697,7 +697,7 @@ const generateHTMLTemplate = (data) => {
         </div>
         <div class="footer-section">
           <div class="footer-logo">
-            <span class="logo-blue">via</span><span class="logo-purple">govia</span>
+            <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
           </div>
           <div class="footer-tagline">PLAN.PACK.GO</div>
         </div>
@@ -709,7 +709,7 @@ const generateHTMLTemplate = (data) => {
       <!-- Header -->
       <div class="header">
         <div class="logo">
-          <span class="logo-blue">via</span><span class="logo-purple">govia</span>
+          <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
         </div>
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
@@ -810,7 +810,7 @@ const generateHTMLTemplate = (data) => {
         </div>
         <div class="footer-section">
           <div class="footer-logo">
-            <span class="logo-blue">via</span><span class="logo-purple">govia</span>
+            <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
           </div>
           <div class="footer-tagline">PLAN.PACK.GO</div>
         </div>
@@ -822,7 +822,7 @@ const generateHTMLTemplate = (data) => {
       <!-- Header -->
       <div class="header">
         <div class="logo">
-          <span class="logo-blue">via</span><span class="logo-purple">govia</span>
+          <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
         </div>
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
@@ -906,7 +906,7 @@ const generateHTMLTemplate = (data) => {
         </div>
         <div class="footer-section">
           <div class="footer-logo">
-            <span class="logo-blue">via</span><span class="logo-purple">govia</span>
+            <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
           </div>
           <div class="footer-tagline">PLAN.PACK.GO</div>
         </div>
@@ -918,7 +918,7 @@ const generateHTMLTemplate = (data) => {
       <!-- Header -->
       <div class="header">
         <div class="logo">
-          <span class="logo-blue">via</span><span class="logo-purple">govia</span>
+          <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
         </div>
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
@@ -1016,7 +1016,7 @@ const generateHTMLTemplate = (data) => {
         </div>
         <div class="footer-section">
           <div class="footer-logo">
-            <span class="logo-blue">via</span><span class="logo-purple">govia</span>
+            <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
           </div>
           <div class="footer-tagline">PLAN.PACK.GO</div>
         </div>

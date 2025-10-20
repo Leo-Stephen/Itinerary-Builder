@@ -497,7 +497,7 @@ const ItineraryForm = () => {
           <div className="inline-block mb-4">
             <h1 className="text-5xl sm:text-6xl font-black text-white mb-2 tracking-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-purple-200">
-                via
+                Vi
               </span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-pink-200">
                 govia
