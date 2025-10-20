@@ -188,17 +188,28 @@ const generateHTMLTemplate = (data) => {
     .day-image-placeholder {
       width: 140px;
       height: 140px;
+      min-width: 140px;
+      min-height: 140px;
       border-radius: 50%;
-      background: #E8E1F3;
+      background: linear-gradient(135deg, #E8E1F3 0%, #d8d1e8 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 80px;
+      font-size: 70px;
       margin-bottom: 10px;
-      border: 2px solid #d8d1e8;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border: 3px solid #d8d1e8;
+      box-shadow: 0 4px 12px rgba(118, 75, 162, 0.15);
       line-height: 1;
       overflow: hidden;
+      position: relative;
+    }
+    
+    .day-image-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
     }
     
     .day-date {
