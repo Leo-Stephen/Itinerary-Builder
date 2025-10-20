@@ -171,6 +171,12 @@ const ItineraryForm = () => {
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isAddingDay, setIsAddingDay] = useState(false);
+  const [isAddingActivity, setIsAddingActivity] = useState({}); // Track adding state per day/period
+  const [isAddingFlight, setIsAddingFlight] = useState(false);
+  const [isAddingHotel, setIsAddingHotel] = useState(false);
+  const [isAddingInclusion, setIsAddingInclusion] = useState(false);
+  const [isAddingInstallment, setIsAddingInstallment] = useState(false);
 
   // Memoized handlers using useCallback to prevent unnecessary re-renders
   const handleInputChange = useCallback((section, index, field, value) => {
@@ -184,7 +190,14 @@ const ItineraryForm = () => {
     });
   }, []);
 
-  const addDay = useCallback(() => {
+  const addDay = useCallback((event) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    if (isAddingDay) return;
+    
+    setIsAddingDay(true);
     setFormData(prev => ({
       ...prev,
       days: [
@@ -200,7 +213,8 @@ const ItineraryForm = () => {
         }
       ]
     }));
-  }, []);
+    setTimeout(() => setIsAddingDay(false), 300);
+  }, [isAddingDay]);
 
   const removeDay = useCallback((index) => {
     setFormData(prev => ({
@@ -209,13 +223,38 @@ const ItineraryForm = () => {
     }));
   }, []);
 
-  const addActivity = useCallback((dayIndex, period) => {
+  const addActivity = useCallback((dayIndex, period, event) => {
+    // Prevent default behavior and event bubbling
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    // Create unique key for this day/period combination
+    const activityKey = `${dayIndex}-${period}`;
+    
+    // Prevent duplicate additions if already adding
+    if (isAddingActivity[activityKey]) {
+      console.log('🚫 Prevented duplicate activity addition');
+      return;
+    }
+
+    // Set loading state for this specific button
+    setIsAddingActivity(prev => ({ ...prev, [activityKey]: true }));
+    
+    // Add the activity with functional state update
     setFormData(prev => {
       const newDays = [...prev.days];
-      newDays[dayIndex][period] = [...newDays[dayIndex][period], { text: '' }];
+      const currentActivities = newDays[dayIndex][period];
+      newDays[dayIndex][period] = [...currentActivities, { text: '' }];
       return { ...prev, days: newDays };
     });
-  }, []);
+
+    // Re-enable button after a short delay (debouncing)
+    setTimeout(() => {
+      setIsAddingActivity(prev => ({ ...prev, [activityKey]: false }));
+    }, 300); // 300ms debounce
+  }, [isAddingActivity]);
 
   const removeActivity = useCallback((dayIndex, period, activityIndex) => {
     setFormData(prev => {
@@ -233,12 +272,20 @@ const ItineraryForm = () => {
     });
   }, []);
 
-  const addFlight = useCallback(() => {
+  const addFlight = useCallback((event) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    if (isAddingFlight) return;
+    
+    setIsAddingFlight(true);
     setFormData(prev => ({
       ...prev,
       flights: [...prev.flights, { date: '', airline: '', route: '' }]
     }));
-  }, []);
+    setTimeout(() => setIsAddingFlight(false), 300);
+  }, [isAddingFlight]);
 
   const removeFlight = useCallback((index) => {
     setFormData(prev => ({
@@ -255,12 +302,20 @@ const ItineraryForm = () => {
     });
   }, []);
 
-  const addHotel = useCallback(() => {
+  const addHotel = useCallback((event) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    if (isAddingHotel) return;
+    
+    setIsAddingHotel(true);
     setFormData(prev => ({
       ...prev,
       hotels: [...prev.hotels, { city: '', checkIn: '', checkOut: '', nights: 0, hotelName: '' }]
     }));
-  }, []);
+    setTimeout(() => setIsAddingHotel(false), 300);
+  }, [isAddingHotel]);
 
   const removeHotel = useCallback((index) => {
     setFormData(prev => ({
@@ -277,12 +332,20 @@ const ItineraryForm = () => {
     });
   }, []);
 
-  const addInclusion = useCallback(() => {
+  const addInclusion = useCallback((event) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    if (isAddingInclusion) return;
+    
+    setIsAddingInclusion(true);
     setFormData(prev => ({
       ...prev,
       inclusions: [...prev.inclusions, { category: '', count: 0, details: '', status: '' }]
     }));
-  }, []);
+    setTimeout(() => setIsAddingInclusion(false), 300);
+  }, [isAddingInclusion]);
 
   const removeInclusion = useCallback((index) => {
     setFormData(prev => ({
@@ -299,12 +362,20 @@ const ItineraryForm = () => {
     });
   }, []);
 
-  const addInstallment = useCallback(() => {
+  const addInstallment = useCallback((event) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    if (isAddingInstallment) return;
+    
+    setIsAddingInstallment(true);
     setFormData(prev => ({
       ...prev,
       installments: [...prev.installments, { installmentNumber: `Installment ${prev.installments.length + 1}`, amount: '', dueDate: '' }]
     }));
-  }, []);
+    setTimeout(() => setIsAddingInstallment(false), 300);
+  }, [isAddingInstallment]);
 
   const removeInstallment = useCallback((index) => {
     setFormData(prev => ({
@@ -421,11 +492,28 @@ const ItineraryForm = () => {
               </div>
               <button
                 type="button"
-                onClick={addDay}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center gap-2"
+                onClick={(e) => addDay(e)}
+                disabled={isAddingDay}
+                className={`px-6 py-3 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                  isAddingDay
+                    ? 'bg-orange-300 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-orange-500 to-pink-500 hover:shadow-lg hover:scale-105'
+                } text-white`}
               >
-                <span className="text-xl">+</span>
-                Add Day
+                {isAddingDay ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Adding...
+                  </>
+                ) : (
+                  <>
+                    <span className="text-xl">+</span>
+                    Add Day
+                  </>
+                )}
               </button>
             </div>
             
@@ -473,7 +561,11 @@ const ItineraryForm = () => {
                     </div>
                   </div>
 
-                  {['morning', 'afternoon', 'evening'].map((period) => (
+                  {['morning', 'afternoon', 'evening'].map((period) => {
+                    const activityKey = `${dayIndex}-${period}`;
+                    const isAdding = isAddingActivity[activityKey] || false;
+                    
+                    return (
                     <div key={period} className="mb-4">
                       <div className="flex justify-between items-center mb-2">
                         <label className="block text-sm font-semibold text-gray-700 capitalize">
@@ -481,10 +573,25 @@ const ItineraryForm = () => {
                         </label>
                         <button
                           type="button"
-                          onClick={() => addActivity(dayIndex, period)}
-                          className="text-sm px-3 py-1 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all duration-200"
+                          onClick={(e) => addActivity(dayIndex, period, e)}
+                          disabled={isAdding}
+                          className={`text-sm px-3 py-1 rounded-lg transition-all duration-200 flex items-center gap-1 ${
+                            isAdding 
+                              ? 'bg-orange-300 cursor-not-allowed' 
+                              : 'bg-orange-500 hover:bg-orange-600 cursor-pointer'
+                          } text-white`}
                         >
-                          + Add
+                          {isAdding ? (
+                            <>
+                              <svg className="animate-spin h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              </svg>
+                              Adding...
+                            </>
+                          ) : (
+                            '+ Add'
+                          )}
                         </button>
                       </div>
                       <div className="space-y-2">
@@ -510,7 +617,8 @@ const ItineraryForm = () => {
                         ))}
                       </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               ))}
             </div>
@@ -529,11 +637,28 @@ const ItineraryForm = () => {
               </div>
               <button
                 type="button"
-                onClick={addFlight}
-                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center gap-2"
+                onClick={(e) => addFlight(e)}
+                disabled={isAddingFlight}
+                className={`px-6 py-3 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                  isAddingFlight
+                    ? 'bg-blue-300 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-blue-500 to-cyan-500 hover:shadow-lg hover:scale-105'
+                } text-white`}
               >
-                <span className="text-xl">+</span>
-                Add Flight
+                {isAddingFlight ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Adding...
+                  </>
+                ) : (
+                  <>
+                    <span className="text-xl">+</span>
+                    Add Flight
+                  </>
+                )}
               </button>
             </div>
             
@@ -606,11 +731,28 @@ const ItineraryForm = () => {
               </div>
               <button
                 type="button"
-                onClick={addHotel}
-                className="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center gap-2"
+                onClick={(e) => addHotel(e)}
+                disabled={isAddingHotel}
+                className={`px-6 py-3 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                  isAddingHotel
+                    ? 'bg-green-300 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-green-500 to-teal-500 hover:shadow-lg hover:scale-105'
+                } text-white`}
               >
-                <span className="text-xl">+</span>
-                Add Hotel
+                {isAddingHotel ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Adding...
+                  </>
+                ) : (
+                  <>
+                    <span className="text-xl">+</span>
+                    Add Hotel
+                  </>
+                )}
               </button>
             </div>
             
@@ -691,11 +833,28 @@ const ItineraryForm = () => {
               </div>
               <button
                 type="button"
-                onClick={addInclusion}
-                className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center gap-2"
+                onClick={(e) => addInclusion(e)}
+                disabled={isAddingInclusion}
+                className={`px-6 py-3 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                  isAddingInclusion
+                    ? 'bg-purple-300 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:shadow-lg hover:scale-105'
+                } text-white`}
               >
-                <span className="text-xl">+</span>
-                Add Inclusion
+                {isAddingInclusion ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Adding...
+                  </>
+                ) : (
+                  <>
+                    <span className="text-xl">+</span>
+                    Add Inclusion
+                  </>
+                )}
               </button>
             </div>
             
@@ -796,11 +955,28 @@ const ItineraryForm = () => {
               <h3 className="text-xl font-bold text-gray-800">Installments</h3>
               <button
                 type="button"
-                onClick={addInstallment}
-                className="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center gap-2"
+                onClick={(e) => addInstallment(e)}
+                disabled={isAddingInstallment}
+                className={`px-6 py-3 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                  isAddingInstallment
+                    ? 'bg-yellow-300 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:shadow-lg hover:scale-105'
+                } text-white`}
               >
-                <span className="text-xl">+</span>
-                Add Installment
+                {isAddingInstallment ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Adding...
+                  </>
+                ) : (
+                  <>
+                    <span className="text-xl">+</span>
+                    Add Installment
+                  </>
+                )}
               </button>
             </div>
             
