@@ -712,21 +712,21 @@ const generateHTMLTemplate = (data) => {
       <table class="table">
         <thead class="table-header">
           <tr>
-            <th>City</th>
-            <th>Check In</th>
-            <th>Check Out</th>
-            <th style="text-align: center;">Nights</th>
-            <th>Hotel Name</th>
+            <th style="width: 15%;">City</th>
+            <th style="width: 18%;">Check In</th>
+            <th style="width: 18%;">Check Out</th>
+            <th style="width: 10%; text-align: center;">Nights</th>
+            <th style="width: 39%;">Hotel Name</th>
           </tr>
         </thead>
         <tbody>
           ${data.hotels.map(hotel => `
             <tr>
-              <td>${hotel.city}</td>
-              <td>${hotel.checkIn}</td>
-              <td>${hotel.checkOut}</td>
-              <td style="text-align: center;">${hotel.nights}</td>
-              <td>${hotel.hotelName}</td>
+              <td style="width: 15%;">${hotel.city}</td>
+              <td style="width: 18%;">${hotel.checkIn}</td>
+              <td style="width: 18%;">${hotel.checkOut}</td>
+              <td style="width: 10%; text-align: center;">${hotel.nights}</td>
+              <td style="width: 39%;">${hotel.hotelName}</td>
             </tr>
           `).join('')}
         </tbody>
@@ -771,15 +771,15 @@ const generateHTMLTemplate = (data) => {
       <table class="table">
         <thead class="table-header">
           <tr>
-            <th>Point</th>
-            <th>Details</th>
+            <th style="width: 30%;">Point</th>
+            <th style="width: 70%;">Details</th>
           </tr>
         </thead>
         <tbody>
           ${data.importantNotes.map(note => `
             <tr>
-              <td class="bold">${note.point}</td>
-              <td>${note.details}</td>
+              <td class="bold" style="width: 30%;">${note.point}</td>
+              <td style="width: 70%;">${note.details}</td>
             </tr>
           `).join('')}
         </tbody>
@@ -790,15 +790,15 @@ const generateHTMLTemplate = (data) => {
       <table class="table">
         <thead class="table-header">
           <tr>
-            <th>Service</th>
-            <th>Details</th>
+            <th style="width: 32%;">Service</th>
+            <th style="width: 68%;">Details</th>
           </tr>
         </thead>
         <tbody>
           ${data.scopeOfService.map(service => `
             <tr>
-              <td class="bold">${service.service}</td>
-              <td>${service.details}</td>
+              <td class="bold" style="width: 32%;">${service.service}</td>
+              <td style="width: 68%;">${service.details}</td>
             </tr>
           `).join('')}
         </tbody>
@@ -809,19 +809,19 @@ const generateHTMLTemplate = (data) => {
       <table class="table">
         <thead class="table-header">
           <tr>
-            <th>Category</th>
-            <th style="text-align: center;">Count</th>
-            <th>Details</th>
-            <th>Status / Comments</th>
+            <th style="width: 18%;">Category</th>
+            <th style="width: 10%; text-align: center;">Count</th>
+            <th style="width: 45%;">Details</th>
+            <th style="width: 27%;">Status / Comments</th>
           </tr>
         </thead>
         <tbody>
           ${data.inclusions.map(inclusion => `
             <tr>
-              <td class="bold">${inclusion.category}</td>
-              <td style="text-align: center;">${inclusion.count}</td>
-              <td>${inclusion.details}</td>
-              <td>${inclusion.status}</td>
+              <td class="bold" style="width: 18%;">${inclusion.category}</td>
+              <td style="width: 10%; text-align: center;">${inclusion.count}</td>
+              <td style="width: 45%;">${inclusion.details}</td>
+              <td style="width: 27%;">${inclusion.status}</td>
             </tr>
           `).join('')}
         </tbody>
@@ -867,19 +867,19 @@ const generateHTMLTemplate = (data) => {
       <table class="table">
         <thead class="table-header">
           <tr>
-            <th>City</th>
-            <th>Activity</th>
-            <th>Type</th>
-            <th>Time Required</th>
+            <th style="width: 20%;">City</th>
+            <th style="width: 40%;">Activity</th>
+            <th style="width: 20%;">Type</th>
+            <th style="width: 20%;">Time Required</th>
           </tr>
         </thead>
         <tbody>
           ${data.activities.map(activity => `
             <tr>
-              <td>${activity.city}</td>
-              <td>${activity.activity}</td>
-              <td>${activity.type}</td>
-              <td>${activity.timeRequired}</td>
+              <td style="width: 20%;">${activity.city}</td>
+              <td style="width: 40%;">${activity.activity}</td>
+              <td style="width: 20%;">${activity.type}</td>
+              <td style="width: 20%;">${activity.timeRequired}</td>
             </tr>
           `).join('')}
         </tbody>
@@ -902,17 +902,17 @@ const generateHTMLTemplate = (data) => {
       <table class="table">
         <thead class="table-header">
           <tr>
-            <th>Installment</th>
-            <th>Amount</th>
-            <th>Due Date</th>
+            <th style="width: 35%;">Installment</th>
+            <th style="width: 35%;">Amount</th>
+            <th style="width: 30%;">Due Date</th>
           </tr>
         </thead>
         <tbody>
           ${data.installments.map(installment => `
             <tr>
-              <td class="bold">${installment.installmentNumber}</td>
-              <td>${installment.amount}</td>
-              <td>${installment.dueDate}</td>
+              <td class="bold" style="width: 35%;">${installment.installmentNumber}</td>
+              <td style="width: 35%;">${installment.amount}</td>
+              <td style="width: 30%;">${installment.dueDate}</td>
             </tr>
           `).join('')}
         </tbody>
