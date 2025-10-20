@@ -167,13 +167,14 @@ const generateHTMLTemplate = (data) => {
       align-items: center;
       justify-content: center;
       writing-mode: vertical-rl;
-      text-orientation: mixed;
+      text-orientation: upright;
       color: white;
       font-weight: 700;
-      font-size: 16px;
-      padding: 20px 10px;
-      letter-spacing: 2px;
+      font-size: 18px;
+      padding: 20px 0;
+      letter-spacing: 3px;
       box-shadow: 0 2px 6px rgba(61, 40, 102, 0.3);
+      line-height: 1.4;
     }
     
     .day-image-section {
@@ -192,10 +193,12 @@ const generateHTMLTemplate = (data) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 50px;
+      font-size: 80px;
       margin-bottom: 10px;
       border: 2px solid #d8d1e8;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      line-height: 1;
+      overflow: hidden;
     }
     
     .day-date {
@@ -297,6 +300,10 @@ const generateHTMLTemplate = (data) => {
       color: #3D2866;
       white-space: nowrap;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
     }
     
     .flight-info {
@@ -401,12 +408,19 @@ const generateHTMLTemplate = (data) => {
       color: #3D2866;
       white-space: nowrap;
       box-shadow: 0 1px 3px rgba(118, 75, 162, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
     }
     
     .payment-value {
       font-size: 14px;
       font-weight: 700;
       color: #3D2866;
+      display: flex;
+      align-items: center;
+      line-height: 1.3;
     }
     
     /* Visa Box */
@@ -439,6 +453,8 @@ const generateHTMLTemplate = (data) => {
     .cta-section {
       text-align: center;
       padding: 30px 0;
+      page-break-inside: avoid;
+      margin-top: 20px;
     }
     
     .cta-title {
@@ -456,8 +472,11 @@ const generateHTMLTemplate = (data) => {
       border-radius: 30px;
       font-size: 14px;
       font-weight: 700;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 4px 8px rgba(61, 40, 102, 0.3);
+      line-height: 1.2;
     }
     
     /* Footer */
