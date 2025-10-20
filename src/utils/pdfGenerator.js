@@ -271,10 +271,7 @@ const generateHTMLTemplate = (data) => {
     }
     
     .section-title .highlight {
-      background: linear-gradient(135deg, #764ba2 0%, #9b7bb7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #764ba2;
     }
     
     /* Flight Card */
