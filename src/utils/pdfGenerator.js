@@ -195,21 +195,23 @@ const generateHTMLTemplate = (data) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 70px;
+      font-size: 100px;
       margin-bottom: 10px;
       border: 3px solid #d8d1e8;
       box-shadow: 0 4px 12px rgba(118, 75, 162, 0.15);
-      line-height: 1;
+      line-height: 0.9;
       overflow: hidden;
       position: relative;
+      transform: scale(1);
     }
     
     .day-image-placeholder img {
-      width: 100%;
-      height: 100%;
+      width: 120%;
+      height: 120%;
       object-fit: cover;
       object-position: center;
       border-radius: 50%;
+      transform: scale(1.2);
     }
     
     .day-date {
