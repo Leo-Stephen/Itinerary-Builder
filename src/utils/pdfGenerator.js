@@ -11,7 +11,35 @@ const COMPANY_INFO = {
   cin: 'U79110KA2024PTC191890'
 };
 
+// Diverse Travel Destination Images (High-quality Unsplash)
+const DESTINATION_IMAGES = [
+  'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=400&h=400&fit=crop', // Beach resort
+  'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&h=400&fit=crop', // Mountain landscape
+  'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&h=400&fit=crop', // City skyline
+  'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&h=400&fit=crop', // Paris landmarks
+  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&h=400&fit=crop', // Tropical beach
+  'https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=400&h=400&fit=crop', // Desert landscape
+  'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&h=400&fit=crop', // Venice canals
+  'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=400&fit=crop', // Mountain lake
+  'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=400&fit=crop', // City streets
+  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop', // Mountain peaks
+  'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400&h=400&fit=crop', // City at night
+  'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=400&fit=crop', // Resort pool
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop', // Forest path
+  'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=400&h=400&fit=crop', // Gardens
+  'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=400&h=400&fit=crop', // Ocean view
+];
+
+// Function to get unique random images for each day
+const getUniqueImages = (count) => {
+  const shuffled = [...DESTINATION_IMAGES].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+};
+
 const generateHTMLTemplate = (data) => {
+  // Get unique images for each day
+  const dayImages = getUniqueImages(data.days.length);
+  
   return `
 <!DOCTYPE html>
 <html>
@@ -195,23 +223,19 @@ const generateHTMLTemplate = (data) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 100px;
       margin-bottom: 10px;
       border: 3px solid #d8d1e8;
       box-shadow: 0 4px 12px rgba(118, 75, 162, 0.15);
-      line-height: 0.9;
       overflow: hidden;
       position: relative;
-      transform: scale(1);
     }
     
     .day-image-placeholder img {
-      width: 120%;
-      height: 120%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center;
-      border-radius: 50%;
-      transform: scale(1.2);
+      display: block;
     }
     
     .day-date {
@@ -617,11 +641,13 @@ const generateHTMLTemplate = (data) => {
       <div class="section-title" style="margin-top: 15px;">Daily <span class="highlight">Itinerary</span></div>
       
       <!-- Days (First 2 days) -->
-      ${data.days.slice(0, 2).map(day => `
+      ${data.days.slice(0, 2).map((day, index) => `
         <div class="day-container">
           <div class="day-badge">Day ${day.dayNumber}</div>
           <div class="day-image-section">
-            <div class="day-image-placeholder">🌆</div>
+            <div class="day-image-placeholder">
+              <img src="${dayImages[index]}" alt="Day ${day.dayNumber}" crossorigin="anonymous">
+            </div>
             <div class="day-date">${day.date}</div>
             <div class="day-title">${day.title}</div>
           </div>
@@ -688,11 +714,13 @@ const generateHTMLTemplate = (data) => {
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
-      ${data.days.length > 2 ? `<div class="section-title">Daily <span class="highlight">Itinerary</span></div>` + data.days.slice(2).map(day => `
+      ${data.days.length > 2 ? `<div class="section-title">Daily <span class="highlight">Itinerary</span></div>` + data.days.slice(2).map((day, index) => `
         <div class="day-container">
           <div class="day-badge">Day ${day.dayNumber}</div>
           <div class="day-image-section">
-            <div class="day-image-placeholder">🌆</div>
+            <div class="day-image-placeholder">
+              <img src="${dayImages[index + 2]}" alt="Day ${day.dayNumber}" crossorigin="anonymous">
+            </div>
             <div class="day-date">${day.date}</div>
             <div class="day-title">${day.title}</div>
           </div>
