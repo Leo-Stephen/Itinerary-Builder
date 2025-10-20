@@ -11,23 +11,23 @@ const COMPANY_INFO = {
   cin: 'U79110KA2024PTC191890'
 };
 
-// Curated Travel Destination Images (Wide angle, consistent theme)
+// Curated Travel Destination Images with Square Crop for Perfect Circles
 const DESTINATION_IMAGES = [
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500', // Mountain vista with sky
-  'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&h=500', // Bali temple landscape
-  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&h=500', // Tropical beach sunset
-  'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=500&h=500', // Ocean waves and coast
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500', // Forest with sunlight
-  'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=500&h=500', // City skyline overview
-  'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=500&h=500', // Alpine mountain landscape
-  'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=500&h=500', // Venice canal with buildings
-  'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&h=500', // Mountain lake reflection
-  'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&h=500', // Eiffel Tower Paris
-  'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500', // European city street
-  'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=500&h=500', // Luxury resort pool
-  'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=500&h=500', // Botanical gardens
-  'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&h=500', // City lights at dusk
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500', // Sunset mountain range
+  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop&crop=entropy', // Mountain peaks
+  'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&h=500&fit=crop&crop=entropy', // Bali temple
+  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&h=500&fit=crop&crop=entropy', // Beach sunset
+  'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=500&h=500&fit=crop&crop=entropy', // Ocean coast
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=entropy', // Forest path
+  'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=500&h=500&fit=crop&crop=entropy', // City skyline
+  'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=500&h=500&fit=crop&crop=entropy', // Mountains
+  'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=500&h=500&fit=crop&crop=entropy', // Venice
+  'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=500&h=500&fit=crop&crop=entropy', // Mountain lake
+  'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&h=500&fit=crop&crop=entropy', // Paris
+  'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop&crop=entropy', // City street
+  'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=500&h=500&fit=crop&crop=entropy', // Resort pool
+  'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=500&h=500&fit=crop&crop=entropy', // Gardens
+  'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&h=500&fit=crop&crop=entropy', // Night city
+  'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=500&h=500&fit=crop&crop=entropy', // Tropical beach
 ];
 
 // Function to get unique random images for each day
@@ -220,9 +220,7 @@ const generateHTMLTemplate = (data) => {
       min-height: 140px;
       border-radius: 50%;
       background: linear-gradient(135deg, #E8E1F3 0%, #d8d1e8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block;
       margin-bottom: 10px;
       border: 3px solid #d8d1e8;
       box-shadow: 0 4px 12px rgba(118, 75, 162, 0.15);
@@ -232,12 +230,14 @@ const generateHTMLTemplate = (data) => {
     }
     
     .day-image-placeholder img {
-      width: 110%;
-      height: 110%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center center;
       display: block;
-      transform: scale(0.95);
+      border-radius: 50%;
+      margin: 0;
+      padding: 0;
     }
     
     .day-date {
