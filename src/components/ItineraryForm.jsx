@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { generatePDF } from '../utils/pdfGenerator.js';
 
 const ItineraryForm = () => {
@@ -172,7 +172,8 @@ const ItineraryForm = () => {
 
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const handleInputChange = (section, index, field, value) => {
+  // Memoized handlers using useCallback to prevent unnecessary re-renders
+  const handleInputChange = useCallback((section, index, field, value) => {
     setFormData(prev => {
       if (section === 'days') {
         const newDays = [...prev.days];
@@ -181,9 +182,9 @@ const ItineraryForm = () => {
       }
       return { ...prev, [field]: value };
     });
-  };
+  }, []);
 
-  const addDay = () => {
+  const addDay = useCallback(() => {
     setFormData(prev => ({
       ...prev,
       days: [
@@ -199,133 +200,139 @@ const ItineraryForm = () => {
         }
       ]
     }));
-  };
+  }, []);
 
-  const removeDay = (index) => {
+  const removeDay = useCallback((index) => {
     setFormData(prev => ({
       ...prev,
       days: prev.days.filter((_, i) => i !== index)
     }));
-  };
+  }, []);
 
-  const addActivity = (dayIndex, period) => {
+  const addActivity = useCallback((dayIndex, period) => {
     setFormData(prev => {
       const newDays = [...prev.days];
-      newDays[dayIndex][period].push({ text: '' });
+      newDays[dayIndex][period] = [...newDays[dayIndex][period], { text: '' }];
       return { ...prev, days: newDays };
     });
-  };
+  }, []);
 
-  const removeActivity = (dayIndex, period, activityIndex) => {
+  const removeActivity = useCallback((dayIndex, period, activityIndex) => {
     setFormData(prev => {
       const newDays = [...prev.days];
       newDays[dayIndex][period] = newDays[dayIndex][period].filter((_, i) => i !== activityIndex);
       return { ...prev, days: newDays };
     });
-  };
+  }, []);
 
-  const updateActivity = (dayIndex, period, activityIndex, value) => {
+  const updateActivity = useCallback((dayIndex, period, activityIndex, value) => {
     setFormData(prev => {
       const newDays = [...prev.days];
-      newDays[dayIndex][period][activityIndex].text = value;
+      newDays[dayIndex][period][activityIndex] = { text: value };
       return { ...prev, days: newDays };
     });
-  };
+  }, []);
 
-  const addFlight = () => {
+  const addFlight = useCallback(() => {
     setFormData(prev => ({
       ...prev,
       flights: [...prev.flights, { date: '', airline: '', route: '' }]
     }));
-  };
+  }, []);
 
-  const removeFlight = (index) => {
+  const removeFlight = useCallback((index) => {
     setFormData(prev => ({
       ...prev,
       flights: prev.flights.filter((_, i) => i !== index)
     }));
-  };
+  }, []);
 
-  const updateFlight = (index, field, value) => {
+  const updateFlight = useCallback((index, field, value) => {
     setFormData(prev => {
       const newFlights = [...prev.flights];
-      newFlights[index][field] = value;
+      newFlights[index] = { ...newFlights[index], [field]: value };
       return { ...prev, flights: newFlights };
     });
-  };
+  }, []);
 
-  const addHotel = () => {
+  const addHotel = useCallback(() => {
     setFormData(prev => ({
       ...prev,
       hotels: [...prev.hotels, { city: '', checkIn: '', checkOut: '', nights: 0, hotelName: '' }]
     }));
-  };
+  }, []);
 
-  const removeHotel = (index) => {
+  const removeHotel = useCallback((index) => {
     setFormData(prev => ({
       ...prev,
       hotels: prev.hotels.filter((_, i) => i !== index)
     }));
-  };
+  }, []);
 
-  const updateHotel = (index, field, value) => {
+  const updateHotel = useCallback((index, field, value) => {
     setFormData(prev => {
       const newHotels = [...prev.hotels];
-      newHotels[index][field] = value;
+      newHotels[index] = { ...newHotels[index], [field]: value };
       return { ...prev, hotels: newHotels };
     });
-  };
+  }, []);
 
-  const addInclusion = () => {
+  const addInclusion = useCallback(() => {
     setFormData(prev => ({
       ...prev,
       inclusions: [...prev.inclusions, { category: '', count: 0, details: '', status: '' }]
     }));
-  };
+  }, []);
 
-  const removeInclusion = (index) => {
+  const removeInclusion = useCallback((index) => {
     setFormData(prev => ({
       ...prev,
       inclusions: prev.inclusions.filter((_, i) => i !== index)
     }));
-  };
+  }, []);
 
-  const updateInclusion = (index, field, value) => {
+  const updateInclusion = useCallback((index, field, value) => {
     setFormData(prev => {
       const newInclusions = [...prev.inclusions];
-      newInclusions[index][field] = value;
+      newInclusions[index] = { ...newInclusions[index], [field]: value };
       return { ...prev, inclusions: newInclusions };
     });
-  };
+  }, []);
 
-  const addInstallment = () => {
+  const addInstallment = useCallback(() => {
     setFormData(prev => ({
       ...prev,
       installments: [...prev.installments, { installmentNumber: `Installment ${prev.installments.length + 1}`, amount: '', dueDate: '' }]
     }));
-  };
+  }, []);
 
-  const removeInstallment = (index) => {
+  const removeInstallment = useCallback((index) => {
     setFormData(prev => ({
       ...prev,
       installments: prev.installments.filter((_, i) => i !== index)
     }));
-  };
+  }, []);
 
-  const updateInstallment = (index, field, value) => {
+  const updateInstallment = useCallback((index, field, value) => {
     setFormData(prev => {
       const newInstallments = [...prev.installments];
-      newInstallments[index][field] = value;
+      newInstallments[index] = { ...newInstallments[index], [field]: value };
       return { ...prev, installments: newInstallments };
     });
-  };
+  }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setIsGenerating(true);
-    await generatePDF(formData);
-    setTimeout(() => setIsGenerating(false), 1000);
-  };
+    try {
+      await generatePDF(formData);
+      setTimeout(() => setIsGenerating(false), 1000);
+    } catch (error) {
+      console.error('PDF generation failed:', error);
+      alert('Failed to generate PDF. Please try again.');
+      setIsGenerating(false);
+    }
+  }, [formData]);
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
