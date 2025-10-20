@@ -513,6 +513,7 @@ const generateHTMLTemplate = (data) => {
       margin-top: 12px;
       line-height: 1.5;
       border: 1px solid #E8E1F3;
+      border-left: 3px solid #764ba2;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
     
