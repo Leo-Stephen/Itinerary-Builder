@@ -495,16 +495,10 @@ const ItineraryForm = () => {
         {/* Header Section */}
         <div className="text-center mb-12 animate-fadeInUp">
           <div className="inline-block mb-4">
-            <h1 className="text-5xl sm:text-6xl font-black text-white mb-2 tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-purple-200">
-                Vi
-              </span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-pink-200">
-                govia
-              </span>
+            <h1 className="text-5xl sm:text-6xl font-black text-white mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200">
+              Itinerary Builder
             </h1>
           </div>
-          <p className="text-xl text-white/90 font-medium mb-2">Itinerary Builder</p>
           <p className="text-white/70">Create your perfect travel experience</p>
         </div>
 

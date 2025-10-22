@@ -1,4 +1,4 @@
-# Vigovia Itinerary Builder
+# Itinerary Builder
 
 A frontend itinerary builder that allows users to create a multi-day tour plan and generate a PDF output based on the Figma design template.
 
@@ -87,4 +87,4 @@ MIT
 
 ## Author
 
-Vigovia Tech Pvt. Ltd
+Leo Stephen

@@ -3,12 +3,12 @@ import html2canvas from 'html2canvas';
 
 // Company Details
 const COMPANY_INFO = {
-  name: 'Vigovia Tech Pvt. Ltd',
-  address: 'Registered Office: Hd-109 Cinnabar Hills,',
-  addressLine2: 'Links Business Park, Karnataka, India.',
-  phone: '+91-9504061112',
-  email: 'Utkarsh@Vigovia.Com',
-  cin: 'U79110KA2024PTC191890'
+  name: 'Leo Stephen',
+  address: '',
+  addressLine2: '',
+  phone: '',
+  email: '',
+  cin: ''
 };
 
 // Curated Travel Destination Images with Square Crop for Perfect Circles
@@ -87,21 +87,14 @@ const generateHTMLTemplate = (data) => {
     }
     
     .logo {
-      font-size: 28px;
-      font-weight: 800;
-    }
-    
-    .logo-blue {
-      color: #5B8FD9;
-    }
-    
-    .logo-purple {
+      font-size: 24px;
+      font-weight: 700;
       color: #764ba2;
     }
     
     .tagline {
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 600;
       color: #3D2866;
       letter-spacing: 0.3px;
     }
@@ -548,14 +541,15 @@ const generateHTMLTemplate = (data) => {
     }
     
     .footer-logo {
-      font-size: 24px;
-      font-weight: 800;
+      font-size: 18px;
+      font-weight: 700;
       margin-bottom: 3px;
+      color: #764ba2;
     }
     
     .footer-tagline {
       font-size: 9px;
-      font-weight: 700;
+      font-weight: 600;
       color: #3D2866;
     }
     
@@ -593,9 +587,7 @@ const generateHTMLTemplate = (data) => {
     <div class="page">
       <!-- Header -->
       <div class="header">
-        <div class="logo">
-          <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
-        </div>
+        <div class="logo">Itinerary Builder</div>
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
@@ -696,9 +688,7 @@ const generateHTMLTemplate = (data) => {
           <div>CIN: ${COMPANY_INFO.cin}</div>
         </div>
         <div class="footer-section">
-          <div class="footer-logo">
-            <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
-          </div>
+          <div class="footer-logo">Itinerary Builder</div>
           <div class="footer-tagline">PLAN.PACK.GO</div>
         </div>
       </div>
@@ -708,9 +698,7 @@ const generateHTMLTemplate = (data) => {
     <div class="page">
       <!-- Header -->
       <div class="header">
-        <div class="logo">
-          <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
-        </div>
+        <div class="logo">Itinerary Builder</div>
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
@@ -809,9 +797,7 @@ const generateHTMLTemplate = (data) => {
           <div>CIN: ${COMPANY_INFO.cin}</div>
         </div>
         <div class="footer-section">
-          <div class="footer-logo">
-            <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
-          </div>
+          <div class="footer-logo">Itinerary Builder</div>
           <div class="footer-tagline">PLAN.PACK.GO</div>
         </div>
       </div>
@@ -821,9 +807,7 @@ const generateHTMLTemplate = (data) => {
     <div class="page">
       <!-- Header -->
       <div class="header">
-        <div class="logo">
-          <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
-        </div>
+        <div class="logo">Itinerary Builder</div>
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
@@ -905,9 +889,7 @@ const generateHTMLTemplate = (data) => {
           <div>CIN: ${COMPANY_INFO.cin}</div>
         </div>
         <div class="footer-section">
-          <div class="footer-logo">
-            <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
-          </div>
+          <div class="footer-logo">Itinerary Builder</div>
           <div class="footer-tagline">PLAN.PACK.GO</div>
         </div>
       </div>
@@ -917,9 +899,7 @@ const generateHTMLTemplate = (data) => {
     <div class="page">
       <!-- Header -->
       <div class="header">
-        <div class="logo">
-          <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
-        </div>
+        <div class="logo">Itinerary Builder</div>
         <div class="tagline">PLAN.PACK.GO ✈</div>
       </div>
       
@@ -1015,9 +995,7 @@ const generateHTMLTemplate = (data) => {
           <div>CIN: ${COMPANY_INFO.cin}</div>
         </div>
         <div class="footer-section">
-          <div class="footer-logo">
-            <span class="logo-blue">Vi</span><span class="logo-purple">govia</span>
-          </div>
+          <div class="footer-logo">Itinerary Builder</div>
           <div class="footer-tagline">PLAN.PACK.GO</div>
         </div>
       </div>
